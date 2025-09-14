@@ -322,8 +322,7 @@ static ssize_t read_proxy(struct file *file, char __user *buf, size_t count,
 	bool first_read = file->f_pos == 0;
 	ssize_t ret = orig_read(file, buf, count, pos);
 	if (first_read) {
-		pr_info("read_proxy append %ld + %ld\n", ret,
-			read_count_append);
+		pr_info("read_proxy append %zd + %zd\n", ret, read_count_append);
 		ret += read_count_append;
 	}
 	return ret;
@@ -334,7 +333,7 @@ static ssize_t read_iter_proxy(struct kiocb *iocb, struct iov_iter *to)
 	bool first_read = iocb->ki_pos == 0;
 	ssize_t ret = orig_read_iter(iocb, to);
 	if (first_read) {
-		pr_info("read_iter_proxy append %ld + %ld\n", ret,
+		pr_info("read_iter_proxy append %zd + %zd\n", ret,
 			read_count_append);
 		ret += read_count_append;
 	}
@@ -522,7 +521,8 @@ __maybe_unused static int __ksu_handle_execve_ksud(const char __user *filename_u
 
 	path[sizeof(path) - 1] = '\0';
 
-	return __ksu_handle_execveat_ksud(AT_FDCWD, path, argv, NULL, NULL);
+	int fd = AT_FDCWD;
+	return __ksu_handle_execveat_ksud(&fd, path, argv, NULL, NULL);
 }
 
 // I don't think this is doable with a single entry point

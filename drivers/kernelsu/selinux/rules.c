@@ -258,13 +258,13 @@ int handle_sepolicy(unsigned long arg3, void __user *arg4)
 			pr_err("sepol: copy sepol_data failed.\n");
 			return -1;
 		}
-		sepol1 = data.field_sepol1;
-		sepol2 = data.field_sepol2;
-		sepol3 = data.field_sepol3;
-		sepol4 = data.field_sepol4;
-		sepol5 = data.field_sepol5;
-		sepol6 = data.field_sepol6;
-		sepol7 = data.field_sepol7;
+		sepol1 = (char __user *)data.field_sepol1;
+		sepol2 = (char __user *)data.field_sepol2;
+		sepol3 = (char __user *)data.field_sepol3;
+		sepol4 = (char __user *)data.field_sepol4;
+		sepol5 = (char __user *)data.field_sepol5;
+		sepol6 = (char __user *)data.field_sepol6;
+		sepol7 = (char __user *)data.field_sepol7;
 		cmd = data.cmd;
 		subcmd = data.subcmd;
 	}
@@ -275,13 +275,13 @@ int handle_sepolicy(unsigned long arg3, void __user *arg4)
 		pr_err("sepol: copy sepol_data failed.\n");
 		return -1;
 	}
-	sepol1 = data.field_sepol1;
-	sepol2 = data.field_sepol2;
-	sepol3 = data.field_sepol3;
-	sepol4 = data.field_sepol4;
-	sepol5 = data.field_sepol5;
-	sepol6 = data.field_sepol6;
-	sepol7 = data.field_sepol7;
+	sepol1 = (char __user *)data.field_sepol1;
+	sepol2 = (char __user *)data.field_sepol2;
+	sepol3 = (char __user *)data.field_sepol3;
+	sepol4 = (char __user *)data.field_sepol4;
+	sepol5 = (char __user *)data.field_sepol5;
+	sepol6 = (char __user *)data.field_sepol6;
+	sepol7 = (char __user *)data.field_sepol7;
 	cmd = data.cmd;
 	subcmd = data.subcmd;
 #endif
